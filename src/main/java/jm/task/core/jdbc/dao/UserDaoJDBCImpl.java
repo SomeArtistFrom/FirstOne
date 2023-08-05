@@ -2,9 +2,11 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
@@ -24,15 +26,15 @@ public class UserDaoJDBCImpl implements UserDao {
     public static String isTableExists = "SELECT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'public' AND tablename = 'users')";
     public static String isUsersExists = "SELECT EXISTS(SELECT 1 FROM users)";
 
-    Connection connection;
+    private static Connection connection = Util.getConnection();
 
-    {
-        try {
-            connection = Util.getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    static {
+//        try {
+//            connection = Util.getConnection();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public void createUsersTable() {
         try (Statement statement = connection.createStatement()) {
