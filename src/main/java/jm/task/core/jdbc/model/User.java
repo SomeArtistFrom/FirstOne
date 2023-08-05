@@ -63,58 +63,6 @@ public class User {
 
     @Override
     public String toString() {
-       // return "User с именем - " + getName()  + " добавлен в базу данных";
         return "В базе есть : " + getName() ;
     }
-
-//    @Override
-//    public int hashCode() {
-//        final int prime = 31;
-//        int result = 1;
-//
-//        result = prime * result + ((age == null) ? 0 : age.hashCode());
-//        result = prime * result + ((name == null) ? 0 : name.hashCode());
-//        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-//
-//        return result;
-//    }
-//
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (this == obj) {
-//            return true;
-//        }
-//
-//        if (obj == null) {
-//            return false;
-//        }
-//
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//
-//        User other = (User) obj;
-//
-//        if (age != other.getAge()) {
-//            return false;
-//        }
-//
-//        if (name == null) {
-//            if (other.getName() != null) {
-//                return false;
-//            }
-//        } else if (!name.equals(other.getName())) {
-//            return false;
-//        }
-//
-//        if (lastName == null) {
-//            if (other.getLastName() != null) {
-//                return false;
-//            }
-//        } else if (!lastName.equals(other.getLastName())) {
-//            return false;
-//        }
-//
-//        return true;
-//    }
 }
