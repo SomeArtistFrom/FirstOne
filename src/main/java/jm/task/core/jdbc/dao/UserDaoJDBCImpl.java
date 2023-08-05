@@ -2,7 +2,6 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
 public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
     }
-
     public User users = new User();
     public static String createNewTable = "CREATE TABLE IF NOT EXISTS users (\n" +
             " id SERIAL PRIMARY KEY NOT NULL ,\n" +
@@ -25,16 +23,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public static String selectAllUsers = "SELECT * FROM users";
     public static String isTableExists = "SELECT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'public' AND tablename = 'users')";
     public static String isUsersExists = "SELECT EXISTS(SELECT 1 FROM users)";
-
     private static Connection connection = Util.getConnection();
-
-//    static {
-//        try {
-//            connection = Util.getConnection();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public void createUsersTable() {
         try (Statement statement = connection.createStatement()) {
