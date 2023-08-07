@@ -14,7 +14,7 @@ public class Util {
     public static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     public static final String USERNAME = "postgres";
     public static final String PASSWORD = "tss!thisisecret";
-    public static final String ADDRESS = "org.postgresql.Driver";
+    public static final String DRIVER = "org.postgresql.Driver";
     private static Connection connection;
 
     private Util() {
@@ -23,7 +23,7 @@ public class Util {
     public static Connection getConnection() {
         if (connection == null) {
             try {
-                Class.forName(ADDRESS).getDeclaredConstructor().newInstance();
+                Class.forName(DRIVER).getDeclaredConstructor().newInstance();
                 connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             } catch (Exception e) {
                 throw new RuntimeException("Ошибка при подключении к базе данных", e);
@@ -32,7 +32,6 @@ public class Util {
         return connection;
     }
 
-
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -40,7 +39,7 @@ public class Util {
             try {
                 Configuration configuration = new Configuration();
 
-                configuration.setProperty("hibernate.connection.driver_class", ADDRESS);
+                configuration.setProperty("hibernate.connection.driver_class", DRIVER);
                 configuration.setProperty("hibernate.connection.url", URL);
                 configuration.setProperty("hibernate.connection.username", USERNAME);
                 configuration.setProperty("hibernate.connection.password", PASSWORD);

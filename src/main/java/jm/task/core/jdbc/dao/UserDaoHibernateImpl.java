@@ -26,8 +26,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction();
             session.createSQLQuery(createNewTable).executeUpdate();
             session.getTransaction().commit();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ignored) {
         }
     }
 
@@ -37,8 +36,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction();
             session.createSQLQuery(deleteTable).executeUpdate();
             session.getTransaction().commit();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ignored) {
         }
     }
 
@@ -53,8 +51,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.save(user);
             session.getTransaction().commit();
             System.out.println("User c именем - " + name + " добавлен в базу данных");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception ignored) {
         }
     }
 
@@ -65,8 +62,7 @@ public class UserDaoHibernateImpl implements UserDao {
             User user = session.get(User.class, id);
             session.delete(user);
             session.getTransaction().commit();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Exception ignored) {
         }
     }
 
@@ -89,8 +85,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction();
             session.createSQLQuery(clearTheTable).executeUpdate();
             session.getTransaction().commit();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ignored) {
         }
     }
 }
