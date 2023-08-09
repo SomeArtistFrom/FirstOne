@@ -32,33 +32,24 @@ public class Util {
         return connection;
     }
 
-    private static SessionFactory sessionFactory;
-
     public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            try {
-                Configuration configuration = new Configuration();
+        Configuration configuration = new Configuration();
 
-                configuration.setProperty("hibernate.connection.driver_class", DRIVER);
-                configuration.setProperty("hibernate.connection.url", URL);
-                configuration.setProperty("hibernate.connection.username", USERNAME);
-                configuration.setProperty("hibernate.connection.password", PASSWORD);
-                configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+        configuration.setProperty("hibernate.connection.driver_class", DRIVER);
+        configuration.setProperty("hibernate.connection.url", URL);
+        configuration.setProperty("hibernate.connection.username", USERNAME);
+        configuration.setProperty("hibernate.connection.password", PASSWORD);
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
 
-                configuration.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider");
-                configuration.setProperty("hibernate.cache.use_second_level_cache", "false");
-                configuration.setProperty("hibernate.cache.use_query_cache", "false");
+        configuration.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider");
+        configuration.setProperty("hibernate.cache.use_second_level_cache", "false");
+        configuration.setProperty("hibernate.cache.use_query_cache", "false");
 
-                configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(User.class);
 
-                ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                        .applySettings(configuration.getProperties()).build();
+        ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties()).build();
 
-                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return sessionFactory;
+        return configuration.buildSessionFactory(serviceRegistry);
     }
 }
